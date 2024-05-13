@@ -11,13 +11,31 @@ const ContactForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logica para enviar los datos al servidor aquí
-    console.log(formData);
-    setFormData({ name: "", message: "" });
+    try {
+      const response = await fetch(
+        "http://localhost:8080/portfolio/v1/messages",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const result = await response.json();
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", message: "" });
+      } else {
+        alert("Failed to send message: " + result.error);
+      }
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      alert("Failed to send message due to an error.");
+    }
   };
-
   return (
     <form
       onSubmit={handleSubmit}
