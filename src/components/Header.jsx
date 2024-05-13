@@ -17,7 +17,7 @@ const NavLink = ({
     if (copyValue) {
       event.preventDefault();
       navigator.clipboard.writeText(copyValue).then(() => {
-        setLinkText("Copied to clipboard!");
+        setLinkText("Copied to clipboard");
         setIsCopied(true);
         setTimeout(() => {
           setLinkText(children);
@@ -41,7 +41,7 @@ const NavLink = ({
   const linkProps = href ? { href } : {};
 
   return (
-    <div className="flex justify-between items-center group">
+    <div className="flex items-center justify-between group">
       {" "}
       <a
         {...linkProps}
@@ -59,7 +59,7 @@ const NavLink = ({
 
 const Header = () => {
   return (
-    <div className="flex flex-col justify-start items-end p-4">
+    <div className="flex flex-col items-end justify-start">
       <NavLink copyValue={"jgaliciamazariegos@outlook.es"} icon={CopyIcon}>
         Email
       </NavLink>
@@ -81,7 +81,7 @@ const Header = () => {
         Spotify
       </NavLink>
       <NavLink
-        href="https://github.com/jgalicia-2022203"
+        href="https://github.com/jgalicia2022203"
         icon={ArrowTopRightIcon}
         external
       >
